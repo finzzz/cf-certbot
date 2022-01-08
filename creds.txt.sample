@@ -1,5 +1,4 @@
-EMAIL="cloudflare_email@somewhere.com"
 CONTACT="contact@email.me"
-DOMAIN_NAME="doma.in"
-API_KEY="abc123" # Get your API key from https://www.cloudflare.com/a/account/my-account
+DOMAIN_NAME="example.com" # this must be domain only, not "*.example.com"
+API_KEY="abc123" 
 ZONE_ID="abc123"

@@ -2,7 +2,6 @@
 
 REPO_PATH=$(dirname "$(readlink -f "$0")")
 API_KEY=$(grep API_KEY "$REPO_PATH"/creds.txt | cut -d '"' -f 2)
-EMAIL=$(grep EMAIL "$REPO_PATH"/creds.txt | cut -d '"' -f 2)
 
 if [ -f /tmp/CERTBOT_"$CERTBOT_DOMAIN"/ZONE_ID ]; then
         ZONE_ID=$(cat /tmp/CERTBOT_"$CERTBOT_DOMAIN"/ZONE_ID)
@@ -19,8 +18,7 @@ if [ -n "${ZONE_ID}" ]; then
     if [ -n "${RECORD_IDS}" ]; then
         for RECORD_ID in $RECORD_IDS
         do curl -s -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$RECORD_ID" \
-                -H "X-Auth-Email: $EMAIL" \
-                -H "X-Auth-Key: $API_KEY" \
+                -H "Authorization: Bearer $API_KEY" \
                 -H "Content-Type: application/json"
         done
     fi
